@@ -1,5 +1,18 @@
-# SO-TG2 - Sistemas Operativos
-Trabalho de grupo nº 2 de S.O. com Jorge Colaço e Hugo Alexandre.
+# Sistemas Operativos - Trabalhos Práticos
+
+Trabalho de grupo nº 1 de S.O. com Hugo Alexandre e Jorge Colaço
+
+Este projeto roda em desenvolvimento de scripts para a matéria de Sistemas Operacionais onde o professor responsável Luiz Garcia nos deu como 
+tarefa criar um conjunto de scripts que permitam a criação de dicionários do Eugénio V3 para a língua inglesa.
+Além disso os scripts devem fornecer informações sobre os textos utilizados (corpus) e os dicionários criados, como por exemplo o seu 
+número de palavras, o tamanho médio das palavras, entre outras estatísticas. O corpus utilizado neste trabalho será o SwitchBoard. 
+Este corpus contém um conjunto de chamadas telefónicas em inglês, transcritas para ficheiros de texto.
+Com isso o objetivo do projeto é utilizar estes scripts para serem utilizados e incorporados junto aos ficheiros do SwitchBoard e 
+utilização junto com o aplicativo Eugénio.
+
+
+Trabalho de grupo nº 2 de S.O. com Hugo Alexandre e Jorge Colaço.
+
 Trabalho sendo executado conforme enunciado de S.O, para elaboração de códigos para execução em shell - Linux.
 Este projeto trabalha com desenvolvimento de funções para a matéria de Sistemas Operacionais onde o professor responsável Luiz Garcia 
 nos deu como tarefa criar um conjunto de shell simples denominada ss (simple shell). Além disso as funções devem fornecer informações ao 
@@ -10,4 +23,5 @@ indicação do fim dos argumentos estabelecidos; tendo em conta  uma shell filho
 comando através da função execvp e deve-se esperar a conclusão da shell filho para então ficar disponível para a introdução de um outro comando.
 Para o desenvolvimento do projeto, utilizamos a linguagem de programação C, uma linguagem de alto nível onde podemos trabalhar próximo da máquina, 
 tendo disponível diversas características de portabilidade, compilação, eficiência e regularidade.
+
 
