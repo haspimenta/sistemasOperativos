@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sed -e 's/[^[:alpha:]]/ /g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | tr 'A-Z' 'a-z' | tr " " "|" | sort -d | uniq -c | gawk '
+{
+	for(i = 0; i < NF; i++) {
+		print $i "";
+	}
+}' >> ./tg1/sentences_dic/sentences.txt

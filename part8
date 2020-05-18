@@ -1,0 +1,38 @@
+#!/bin/bash
+
+cat ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | egrep -o '\w+' | sort -f | uniq -c -i > ./tg1/words_dic/words_8.txt
+sed -n '3,250002p' ./tg1/words_dic/words_8.txt > ./tg1/words_dic/words_8_temp.txt
+mv ./tg1/words_dic/words_8_temp.txt ./tg1/words_dic/words.txt
+rm ./tg1/words_dic/words_8.txt
+
+sed -e 's/[^[:alpha:]]/ /g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | sort -f | gawk -F, '{
+for(i=0; i <=NF; i++){
+j= i+1;
+a[$i,$j]=$i" "$j;
+print a[$i,$j];
+}
+}' | tr " " "#" | sort -d | uniq -c | tr "#" " " | gawk '{print $2 " " $3;}' | sort -f | uniq -c -i > ./tg1/words_dic/words_pairs_8.txt
+sed -n '3,250002p' ./tg1/words_dic/words_pairs_8.txt > ./tg1/words_dic/words_pairs_8_temp.txt
+mv ./tg1/words_dic/words_pairs_8_temp.txt ./tg1/words_dic/words_pairs.txt
+rm ./tg1/words_dic/words_pairs_8.txt
+
+sed -e 's/[^[:alpha:]]/ /g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | tr 'A-Z' 'a-z' | tr " " "|" | sort -d | uniq -c | gawk '
+{
+	for(i = 0; i < NF; i++) {
+		print $i "";
+	}
+}' >> ./tg1/sentences_dic/sentences_8.txt
+sed -n '18,2500017p' ./tg1/sentences_dic/sentences_8.txt > ./tg1/sentences_dic/sentences_8_temp.txt
+mv ./tg1/sentences_dic/sentences_8_temp.txt ./tg1/sentences_dic/sentences.txt
+rm ./tg1/sentences_dic/sentences_8.txt
+
+sed -e 's/[^[:alpha:]]/ /g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | sort -f | gawk -F, '{
+for(i=0; i <NF; i++){
+j= i+1;
+a[$i,$j]=$i" "$j;
+print a[$i,$j];
+}
+}' | sort -d | uniq -c | tr " " "|" | sed -e 's/||/ /g' > ./tg1/sentences_dic/sentence_pairs_8.txt
+sed -n '10,250009p' ./tg1/sentences_dic/sentence_pairs_8.txt > ./tg1/sentences_dic/sentence_pairs_8_temp.txt
+mv ./tg1/sentences_dic/sentence_pairs_8_temp.txt ./tg1/sentences_dic/sentence_pairs.txt
+rm ./tg1/sentences_dic/sentence_pairs_8.txt

@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Attempting file extraction, checking if there's a file manager program compatible with .zip files."
+if [ -x "" ]; then
+	echo "Engrampa exists, proceding with file extraction."
+	engrampa -e ./tg1/corpus/ ./switchboard.zip
+elif [ -x "/usr/bin/unzip" ]; then
+	echo "Unzip exists, proceding with file extraction."
+	unzip ./switchboard.zip -d ./tg1/corpus/
+fi
+
+find ./tg1/corpus/ -type f -name '*.txt' -exec cp -at  ./tg1/corpus_txt/  {} +

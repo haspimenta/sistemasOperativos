@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cat < /home/has/TrabPraticoSO/tg1/corpus_txt/sw4940-ms98-a-trans.txt | egrep -o '\w+' #arquivo de teste
+
+#swmerged-ms-a-trans.txt //este é o arquivo real unificado
+
+if(palavra != "")
+
+  palavra="[ \n\t,.«»:)(;/?\"!]+";
+
+  if(palavra in sw4940-ms98-a-trans.txt )
+    sw4940-ms98-a-trans.txt[ palavra ] +1;
+  
+END{
+  for(palavra in sw4940-ms98-a-trans.txt )
+    print palavra, sw4940-ms98-a-trans.txt[ palavra ];
+}
+
+cat > /home/has/TrabPraticoSO/tg1/words_dic/words.txt
+
+

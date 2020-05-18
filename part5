@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sed -e 's/[^[:alpha:]]/ /g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | sort -f | gawk -F, '{
+for(i=0; i <=NF; i++){
+j= i+1;
+a[$i,$j]=$i" "$j;
+print a[$i,$j];
+}
+}' | tr " " "#" | sort -d | uniq -c | tr "#" " " | gawk '{print $2 " " $3}' | sort -f | uniq -c -i > ./tg1/words_dic/words_pairs.txt

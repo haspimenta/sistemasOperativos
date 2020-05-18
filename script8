@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd //home/has/TrabPraticoSO/tg1/corpus_txt
+
+cat > swmerged-ms-a-trans.txt | tr -d '\t' | sed '/^\s*$/d' | sort | uniq - ci > //home/has/TrabPraticoSO/tg1/corpus_txtswmerged-ms-a-trans-250000.txt
+sed 's/ \+/\t/g' -i //home/has/TrabPraticoSO/tg1/corpus_txt/swmerged-ms-a-trans-250000.txt
+
+cat > //home/has/TrabPraticoSO/tg1/corpus_txt/swmerged-ms-a-trans-250000.txt | cut -f 3 | cut -f 4 > //home/has/TrabPraticoSO/tg1/corpus_txt/swmerged-ms-a-trans-250000-1.txt
+paste //home/has/TrabPraticoSO/tg1/corpus/swmerged-ms-a-trans-250000-1.txt > ////home/has/TrabPraticoSO/tg1/corpus_txt/swmerged-ms-a-trans-250000-paste.txt
+rm //home/has/TrabPraticoSO/tg1/corpus_txt/swmerged-ms-a-trans-250000-1.txt

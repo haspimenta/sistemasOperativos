@@ -1,0 +1,42 @@
+#!/bin/bash
+
+if [ ! -d "./tg1" ]; then
+	mkdir ./tg1
+	mkdir ./tg1/scripts
+	mkdir ./tg1/corpus
+	mkdir ./tg1/corpus_txt
+	mkdir ./tg1/corpus_info
+	mkdir ./tg1/words_dic
+	mkdir ./tg1/sentences_dic
+	echo "Directories created with success."
+	cat > ./tg1/scripts/part2 << ENDOFFILE
+
+#!/bin/bash
+
+echo "Attempting file extraction, checking if there's a file manager program compatible with .zip files."
+if [ -x "$(command -v ark)" ]; then
+	echo "Engrampa exists, proceding with file extraction."
+	engrampa -e ./tg1/corpus/ ./switchboard.zip
+elif [ -x "/usr/bin/unzip" ]; then
+	echo "Unzip exists, proceding with file extraction."
+	unzip ./switchboard.zip -d ./tg1/corpus/
+fi
+
+find ./tg1/corpus/ -type f -name '*.txt' -exec cp -at  ./tg1/corpus_txt/  {} +
+
+ENDOFFILE
+	sudo chmod u+rwx ./tg1/scripts/part2
+	./tg1/scripts/part2
+	
+	
+else
+	echo "Directory tg1 already exists, aborting operation."l
+	exit 1
+fi
+
+#engrampa
+#tar
+#unzip
+#ark
+#xarchiver
+#p 7zip

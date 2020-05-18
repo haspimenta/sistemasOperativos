@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sed -e 's/[^[:alpha:]]/ /g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | sort -f | gawk -F, '{
+for(i=0; i <NF; i++){
+j= i+1;
+a[$i,$j]=$i" "$j;
+print a[$i,$j];
+}
+}' | sort -d | uniq -c | tr " " "|" | sed -e 's/||/ /g' > ./tg1/sentences_dic/sentence_pairs.txt

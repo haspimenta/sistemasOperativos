@@ -1,0 +1,93 @@
+#!/bin/bash
+
+if [ ! -d "./tg1" ]; then
+	mkdir ./tg1
+	mkdir ./tg1/scripts
+	mkdir ./tg1/corpus
+	mkdir ./tg1/corpus_txt
+	mkdir ./tg1/corpus_info
+	mkdir ./tg1/words_dic
+	mkdir ./tg1/sentences_dic
+	echo "Directories created with success."
+	cat > ./tg1/scripts/part2 << ENDOFFILE
+#!/bin/bash
+echo "Attempting file extraction, checking if there's a file manager program compatible with .zip files."
+if [ -x "$(command -v ark)" ]; then
+	echo "Engrampa exists, proceding with file extraction."
+	engrampa -e ./tg1/corpus/ ./switchboard.zip
+elif [ -x "/usr/bin/unzip" ]; then
+	echo "Unzip exists, proceding with file extraction."
+	unzip ./switchboard.zip -d ./tg1/corpus/
+fi
+
+find ./tg1/corpus/ -type f -name '*.txt' -exec cat > ./tg1/corpus_txt/swmerged-ms98-a-trans.txt {} +
+ENDOFFILE
+	sudo chmod u+rwx ./tg1/scripts/part2
+	./tg1/scripts/part2
+	echo "2nd script executed with no errors."
+	cat > ./tg1/scripts/part3 << ENDOFFILE
+#!/bin/bash
+	echo "Charater Nº: " > ./tg1/corpus_info/corpus_info.txt
+	wc -m < ./tg1/corpus_txt/swmerged-ms98-a-trans.txt >> ./tg1/corpus_info/corpus_info.txt
+	echo "Line Nº: " >> ./tg1/corpus_info/corpus_info.txt
+	cat ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | sed '/^\s*$/d' | wc -l >> ./tg1/corpus_info/corpus_info.txt
+	echo "Word Nº: " >> ./tg1/corpus_info/corpus_info.txt
+	wc -w < ./tg1/corpus_txt/swmerged-ms98-a-trans.txt >> ./tg1/corpus_info/corpus_info.txt
+	echo "Unique word Nº: " >> ./tg1/corpus_info/corpus_info.txt
+	cat ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | egrep -o "(\w|')+" | sort -f | uniq -i | wc -l >> ./tg1/corpus_info/corpus_info.txt
+	echo "Sentence Nº: " >> ./tg1/corpus_info/corpus_info.txt
+
+	sed 's/ \t\t//g' ./tg1/corpus_txt/swmerged-ms98-a-trans.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp.txt
+	sed 's/ \t//g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp2.txt
+
+	sed 's/\./\. /g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp2.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp3.txt
+	sed 's/\!/\! /g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp3.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp4.txt
+	sed 's/\?/\? /g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp4.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp5.txt
+	sed 's/\;/\; /g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp5.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp6.txt
+
+	sed 's/\. /\.\n/g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp6.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp7.txt
+	sed 's/\! /\!\n/g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp7.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp8.txt
+	sed 's/\? /\?\n/g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp8.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp9.txt
+	sed 's/\; /\;\n/g' ./tg1/corpus_info/swmerged-ms98-a-trans-temp9.txt > ./tg1/corpus_info/swmerged-ms98-a-trans-temp10.txt
+	wc -l < ./tg1/corpus_info/swmerged-ms98-a-trans-temp10.txt >> ./tg1/corpus_info/corpus_info.txt
+	echo "Unique entence Nº: " >> ./tg1/corpus_info/corpus_info.txt
+	cat ./tg1/corpus_info/swmerged-ms98-a-trans-temp10.txt | sort -f | uniq -i | wc -l >> ./tg1/corpus_info/corpus_info.txt
+	rm ./tg1/corpus_info/swmerged-ms98-a-trans-temp*.txt
+ENDOFFILE
+	sudo chmod u+rwx ./tg1/scripts/part3
+	./tg1/scripts/part3
+	echo "3rd script executed with no errors."
+	cat > ./tg1/scripts/part4 << ENDOFFILE
+#!/bin/bash
+	cat ./tg1/corpus_txt/swmerged-ms98-a-trans.txt | egrep -o '\w+' | sort -f | uniq -c -i > ./tg1/words_dic/words.txt
+ENDOFFILE
+	sudo chmod u+rwx ./tg1/scripts/part4
+	./tg1/scripts/part4
+	echo "4th script executed with no errors."
+	cp ./part5 ./tg1/scripts/
+	sudo chmod u+rwx ./tg1/scripts/part5
+	./tg1/scripts/part5
+	echo "5th script executed with no errors."
+	cp ./part6 ./tg1/scripts/
+	sudo chmod u+rwx ./tg1/scripts/part6
+	./tg1/scripts/part6
+	echo "6th script executed with no errors."
+	cp ./part7 ./tg1/scripts/
+	sudo chmod u+rwx ./tg1/scripts/part7
+	./tg1/scripts/part7
+	echo "7th script executed with no errors."
+	cp ./part8 ./tg1/scripts/
+	sudo chmod u+rwx ./tg1/scripts/part8
+	./tg1/scripts/part8
+	echo "8th script executed with no errors."
+else
+	echo "Directory tg1 already exists, aborting operation."l
+	exit 1
+fi
+
+#engrampa
+#tar
+#unzip
+#ark
+#xarchiver
+#p 7zip
