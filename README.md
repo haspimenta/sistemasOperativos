@@ -1,6 +1,4 @@
-# Sistemas Operativos - Trabalhos Práticos
-
-Trabalho de grupo nº 1 de S.O. com Hugo Alexandre e Jorge Colaço
+# Sistemas Operativos
 
 Este projeto roda em desenvolvimento de scripts para a matéria de Sistemas Operacionais onde o professor responsável Luiz Garcia nos deu como 
 tarefa criar um conjunto de scripts que permitam a criação de dicionários do Eugénio V3 para a língua inglesa.
@@ -9,9 +7,6 @@ número de palavras, o tamanho médio das palavras, entre outras estatísticas. 
 Este corpus contém um conjunto de chamadas telefónicas em inglês, transcritas para ficheiros de texto.
 Com isso o objetivo do projeto é utilizar estes scripts para serem utilizados e incorporados junto aos ficheiros do SwitchBoard e 
 utilização junto com o aplicativo Eugénio.
-
-
-Trabalho de grupo nº 2 de S.O. com Hugo Alexandre e Jorge Colaço.
 
 Trabalho sendo executado conforme enunciado de S.O, para elaboração de códigos para execução em shell - Linux.
 Este projeto trabalha com desenvolvimento de funções para a matéria de Sistemas Operacionais onde o professor responsável Luiz Garcia 
